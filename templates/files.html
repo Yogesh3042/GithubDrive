@@ -1,42 +1,160 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Files</title>
-</head>
+<title>GitHub Drive by Yogesh</title>
+<style>
+body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
 
+h1{
+    text-align:center;
+    color:#4a90e2;
+    margin-bottom:10px;
+}
+
+h2{
+    text-align:center;
+    color:#333;
+    margin-bottom:20px;
+}
+
+.search-form{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.search-form input{
+    padding:8px;
+    width:250px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+.search-form button{
+    padding:8px 15px;
+    border:none;
+    border-radius:5px;
+    background:#4a90e2;
+    color:white;
+    cursor:pointer;
+    transition: background 0.3s;
+}
+
+.search-form button:hover{
+    background:#357ab8;
+}
+
+.download-zip{
+    display:block;
+    text-align:center;
+    margin:15px 0;
+    color:#4a90e2;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+.card img, .card video{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:6px;
+}
+
+.filename{
+    font-weight:bold;
+    margin-top:8px;
+    text-align:center;
+    word-break:break-word;
+}
+
+.meta{
+    font-size:12px;
+    color:#555;
+    text-align:center;
+    margin-top:4px;
+}
+
+.delete{
+    margin-top:5px;
+    color:red;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.back-link{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#4a90e2;
+    text-decoration:none;
+    font-weight:bold;
+}
+</style>
+</head>
 <body>
 
-<h2>Files in Repository</h2>
+<h1>GitHub Drive by Yogesh</h1>
+<h2>Repository: {{.Repo}}</h2>
 
-<ul>
+<div class="search-form">
+<form>
+<input type="text" name="search" placeholder="Search files">
+<button type="submit">Search</button>
+</form>
+</div>
 
-{{range .}}
+<a class="download-zip" href="/download?name={{.Repo}}">⬇ Download Repository as ZIP</a>
 
-<li>
-
-<p>{{.Name}}</p>
-
-<a href="{{.Path}}" target="_blank">Open</a>
-
-<br>
-
-<img src="{{.Path}}" width="200" onerror="this.style.display='none'">
-
-<br>
-
-<video width="300" controls onerror="this.style.display='none'">
+<div class="gallery">
+{{range .Files}}
+<div class="card">
+<a href="{{.Path}}" target="_blank">
+{{if .IsImage}}
+<img src="{{.Path}}">
+{{end}}
+{{if .IsVideo}}
+<video controls>
 <source src="{{.Path}}">
 </video>
-
-</li>
-
-<br>
-
 {{end}}
+</a>
+<div class="filename">{{.Name}}</div>
+<div class="meta">
+Size: {{.Size}}<br>
+Uploaded: {{.Time}}
+</div>
+<a class="delete" href="/delete?repo={{.Repo}}&file={{.Name}}">🗑 Delete</a>
+</div>
+{{end}}
+</div>
 
-</ul>
-
-<a href="/repos">Back to Repositories</a>
+<a class="back-link" href="/repos">⬅ Back to Repositories</a>
 
 </body>
 </html>

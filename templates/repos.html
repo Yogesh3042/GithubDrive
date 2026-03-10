@@ -1,30 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Repositories</title>
-</head>
 
+<head>
+<title>GitHub Drive by Yogesh</title>
+<style>
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #4a90e2;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.repo-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.repo-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.repo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.repo-card a {
+    text-decoration: none;
+    color: #4a90e2;
+    font-weight: bold;
+    display: block;
+}
+
+a.upload-new {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    color: #4a90e2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a.upload-new:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
 <body>
 
+<div class="container">
+
+<h1>GitHub Drive by Yogesh</h1>
 <h2>Available Repositories</h2>
 
-<ul>
-
+<div class="repo-list">
 {{range .}}
-
-<li>
-<a href="/repo?name={{.}}">
-{{.}}
-</a>
-</li>
-
+<div class="repo-card">
+<a href="/repo?name={{.}}">{{.}}</a>
+</div>
 {{end}}
+</div>
 
-</ul>
-
-<br>
-
-<a href="/">Upload More Files</a>
+<a class="upload-new" href="/">➤ Upload New Files</a>
+</div>
 
 </body>
 </html>
