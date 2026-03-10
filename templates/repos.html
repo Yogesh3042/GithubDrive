@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Repositories</title>
+</head>
+
+<body>
+
+<h2>Available Repositories</h2>
+
+<ul>
+
+{{range .}}
+
+<li>
+<a href="/repo?name={{.}}">
+{{.}}
+</a>
+</li>
+
+{{end}}
+
+</ul>
+
+<br>
+
+<a href="/">Upload More Files</a>
+
+</body>
+</html>

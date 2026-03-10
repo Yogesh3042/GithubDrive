@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Files</title>
+</head>
+
+<body>
+
+<h2>Files in Repository</h2>
+
+<ul>
+
+{{range .}}
+
+<li>
+
+<p>{{.Name}}</p>
+
+<a href="{{.Path}}" target="_blank">Open</a>
+
+<br>
+
+<img src="{{.Path}}" width="200" onerror="this.style.display='none'">
+
+<br>
+
+<video width="300" controls onerror="this.style.display='none'">
+<source src="{{.Path}}">
+</video>
+
+</li>
+
+<br>
+
+{{end}}
+
+</ul>
+
+<a href="/repos">Back to Repositories</a>
+
+</body>
+</html>

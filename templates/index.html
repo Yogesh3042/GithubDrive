@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Repository Upload</title>
+</head>
+
+<body>
+
+<h2>Upload Files</h2>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+
+    <label>Repository Name:</label><br>
+    <input type="text" name="repo" required><br><br>
+
+    <label>Select Files:</label><br>
+    <input type="file" name="files" multiple><br><br>
+
+    <button type="submit">Upload</button>
+
+</form>
+
+<br>
+<hr>
+
+<a href="/repos">
+<button>View Repositories</button>
+</a>
+
+</body>
+</html>
